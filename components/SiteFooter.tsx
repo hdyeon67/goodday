@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <Footer
       logoSrc="/logo.png"
-      logoChipBg="transparent"
+      logoChipBg="#ffffff"
       links={[
         { label: "서비스 소개", href: "/about" },
         { label: "프리미엄", href: "/calendar" },
