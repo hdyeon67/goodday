@@ -17,7 +17,7 @@ export const PROMOS: PromoApp[] = [
     emoji: "💞",
     title: "궁합도 궁금하다면?",
     desc: "이름과 생년월일로 보는 케미체크",
-    href: "https://chemicheck.vercel.app",
+    href: "https://chemicheck-lemon.vercel.app",
     color: "#ff5db1",
   },
 ];
