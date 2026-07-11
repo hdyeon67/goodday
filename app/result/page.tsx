@@ -1,0 +1,63 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { decodePayload } from "@/lib/share";
+import { todayKST } from "@/lib/engine";
+import { buildResult } from "@/lib/result/build";
+import { ResultView } from "@/components/result/ResultView";
+import { SiteFooter } from "@/components/SiteFooter";
+import { siteUrl } from "@/lib/config/site";
+
+type SearchParams = { d?: string };
+
+export function generateMetadata({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}): Metadata {
+  const payload = decodePayload(searchParams.d);
+  if (!payload) return { title: "좋은날" };
+  const vm = buildResult(payload, todayKST());
+  if (!vm) return { title: "좋은날" };
+
+  const best = vm.top3[0];
+  const title = `${vm.name}님의 ${vm.purpose.label} 좋은 날`;
+  const desc = best ? `${best.labelKo}이 가장 좋아요` : "향후 30일 좋은 날 추천";
+  const og = `${siteUrl()}/api/og?d=${encodeURIComponent(searchParams.d ?? "")}`;
+
+  return {
+    title,
+    description: desc,
+    openGraph: {
+      title,
+      description: desc,
+      images: [{ url: og, width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image", title, description: desc, images: [og] },
+  };
+}
+
+export default function ResultPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const payload = decodePayload(searchParams.d);
+  if (!payload) redirect("/");
+
+  const vm = buildResult(payload, todayKST());
+  if (!vm) redirect("/");
+
+  const og = `${siteUrl()}/api/og?d=${encodeURIComponent(searchParams.d ?? "")}`;
+
+  return (
+    <main className="min-h-screen bg-hanji">
+      <ResultView
+        data={vm}
+        name={payload.n}
+        birth={payload.b}
+        ogImageUrl={og}
+      />
+      <SiteFooter />
+    </main>
+  );
+}

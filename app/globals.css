@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hanji: #f7f3ea;
+  --meok: #2b2b2b;
+
+  /* shadcn 계열 토큰 (HSL 삼중값) — 한지/먹 팔레트 매핑 */
+  --foreground: 0 0% 17%; /* 먹색 */
+  --muted-foreground: 40 8% 45%; /* 흐린 먹 */
+  --border: 43 33% 84%; /* 한지 deep */
+  --primary: 37 40% 39%; /* 약과빛 포인트 */
+}
+
+html,
+body {
+  background-color: var(--hanji);
+  color: var(--meok);
+}
+
+body {
+  font-family: Pretendard, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
