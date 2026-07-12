@@ -7,14 +7,16 @@ import { ResultView } from "@/components/result/ResultView";
 import { SiteFooter } from "@/components/SiteFooter";
 import { siteUrl } from "@/lib/config/site";
 
-type SearchParams = { d?: string };
+// Next 15: searchParams 는 Promise 로 전달된다.
+type SearchParams = Promise<{ d?: string }>;
 
-export function generateMetadata({
+export async function generateMetadata({
   searchParams,
 }: {
   searchParams: SearchParams;
-}): Metadata {
-  const payload = decodePayload(searchParams.d);
+}): Promise<Metadata> {
+  const { d: dParam } = await searchParams;
+  const payload = decodePayload(dParam);
   if (!payload) return { title: "좋은날" };
   const vm = buildResult(payload, todayKST());
   if (!vm) return { title: "좋은날" };
@@ -22,7 +24,7 @@ export function generateMetadata({
   const best = vm.top3[0];
   const title = `${vm.name}님의 ${vm.purpose.label} 좋은 날`;
   const desc = best ? `${best.labelKo}이 가장 좋아요` : "향후 30일 좋은 날 추천";
-  const og = `${siteUrl()}/api/og?d=${encodeURIComponent(searchParams.d ?? "")}`;
+  const og = `${siteUrl()}/api/og?d=${encodeURIComponent(dParam ?? "")}`;
 
   return {
     title,
@@ -36,18 +38,19 @@ export function generateMetadata({
   };
 }
 
-export default function ResultPage({
+export default async function ResultPage({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
-  const payload = decodePayload(searchParams.d);
+  const { d: dParam } = await searchParams;
+  const payload = decodePayload(dParam);
   if (!payload) redirect("/");
 
   const vm = buildResult(payload, todayKST());
   if (!vm) redirect("/");
 
-  const d = encodeURIComponent(searchParams.d ?? "");
+  const d = encodeURIComponent(dParam ?? "");
   const og = `${siteUrl()}/api/og?d=${d}`;
   const card = `/api/card?d=${d}`;
 
