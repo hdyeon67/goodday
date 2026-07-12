@@ -9,7 +9,8 @@
 - 재미·참고용 엔터테인먼트 콘텐츠 (의료·투자·법률 조언 아님)
 
 ## 기술 스택
-Next.js 14 (App Router) · TypeScript · Tailwind CSS · Vitest · Vercel 배포
+Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS · Vitest ·
+**Cloudflare Workers** 배포(OpenNext 어댑터) — 이전 절차는 `docs/cloudflare-migration.md`
 유일한 런타임 의존성: `korean-lunar-calendar`(음력 변환), `html-to-image`(결과 PNG 저장)
 
 ## 프로젝트 구조
