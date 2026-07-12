@@ -11,6 +11,15 @@ import {
 import type { DayScore } from "../engine";
 import type { UserProfile } from "../engine";
 
+/** 오행 한글 → 한자 (문구 표기용) */
+const OHAENG_HANJA: Record<Ohaeng, string> = {
+  목: "木",
+  화: "火",
+  토: "土",
+  금: "金",
+  수: "水",
+};
+
 /**
  * 그 날의 가장 두드러진 근거 한 조각을 반환.
  * 추천 쪽(긍정)과 피함 쪽(부드러운 완곡)으로 톤을 나눈다.
@@ -28,7 +37,7 @@ export function factNote(day: DayScore, user: UserProfile): string {
   const rel = ohaengRelation(user.ohaeng, oh);
   if (positive && (rel === "생받음" || rel === "생함")) {
     return rel === "생받음"
-      ? `${oh}(${oh})의 기운이 당신을 살며시 북돋아 줘요`
+      ? `${oh}(${OHAENG_HANJA[oh]})의 기운이 당신을 살며시 북돋아 줘요`
       : `당신의 기운이 이날의 ${oh} 기운과 순하게 이어져요`;
   }
   if (positive && rel === "동일") {
