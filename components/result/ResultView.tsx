@@ -18,11 +18,13 @@ export function ResultView({
   name,
   birth,
   ogImageUrl,
+  cardImageUrl,
 }: {
   data: ResultVM;
   name: string;
   birth: string;
   ogImageUrl: string;
+  cardImageUrl: string;
 }) {
   const router = useRouter();
   const { purpose } = data;
@@ -151,10 +153,10 @@ export function ResultView({
       <section className="mt-8">
         <h2 className="mb-2 text-sm font-semibold text-meok">결과 공유하기</h2>
         <ShareBar
-          captureId="result-card"
           title={`${name}님의 ${purpose.label} 좋은 날`}
           description={best ? `${best.labelKo}이 가장 좋아요` : "좋은 날 추천"}
           ogImageUrl={ogImageUrl}
+          cardImageUrl={cardImageUrl}
         />
       </section>
 

@@ -47,7 +47,9 @@ export default function ResultPage({
   const vm = buildResult(payload, todayKST());
   if (!vm) redirect("/");
 
-  const og = `${siteUrl()}/api/og?d=${encodeURIComponent(searchParams.d ?? "")}`;
+  const d = encodeURIComponent(searchParams.d ?? "");
+  const og = `${siteUrl()}/api/og?d=${d}`;
+  const card = `/api/card?d=${d}`;
 
   return (
     <main className="min-h-screen bg-hanji">
@@ -56,6 +58,7 @@ export default function ResultPage({
         name={payload.n}
         birth={payload.b}
         ogImageUrl={og}
+        cardImageUrl={card}
       />
       <SiteFooter />
     </main>
