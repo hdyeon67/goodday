@@ -6,7 +6,8 @@ import { PURPOSES, type PurposeId } from "@/lib/engine";
 import { encodePayload } from "@/lib/share";
 import { OHAENG_HINT } from "@/lib/copy";
 import type { ResultVM } from "@/lib/result/build";
-import { AdSlot } from "@/components/AdSlot";
+import { AdFit } from "@/components/AdFit";
+import { ADFIT_UNIT_BOTTOM, ADFIT_UNIT_TOP } from "@/lib/config/flags";
 import { CrossPromo } from "@/components/CrossPromo";
 import { Heatmap } from "./Heatmap";
 import { ShareBar } from "./ShareBar";
@@ -113,8 +114,8 @@ export function ResultView({
         </section>
       </div>
 
-      {/* 광고 슬롯 1 (TOP3 아래) */}
-      <AdSlot slot="result-top" />
+      {/* 광고 슬롯 1 (TOP3 아래) — 카카오 애드핏 */}
+      <AdFit unit={ADFIT_UNIT_TOP} width={320} height={100} />
 
       {/* 피하면 좋은 날 */}
       {data.avoid.length > 0 && (
@@ -146,8 +147,8 @@ export function ResultView({
         <Heatmap cells={data.heatmap} />
       </div>
 
-      {/* 광고 슬롯 2 (히트맵 아래) */}
-      <AdSlot slot="result-bottom" />
+      {/* 광고 슬롯 2 (히트맵 아래) — 카카오 애드핏 */}
+      <AdFit unit={ADFIT_UNIT_BOTTOM} width={320} height={100} />
 
       {/* 공유 */}
       <section className="mt-8">

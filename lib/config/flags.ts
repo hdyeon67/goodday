@@ -10,3 +10,7 @@ export const ADSENSE_ENABLED =
 
 /** 애드센스 퍼블리셔 client id (ca-pub-...) */
 export const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
+
+/** 카카오 애드핏 광고단위 ID (DAN-...). 없으면 해당 슬롯 미노출 */
+export const ADFIT_UNIT_TOP = process.env.NEXT_PUBLIC_ADFIT_UNIT_TOP ?? "";
+export const ADFIT_UNIT_BOTTOM = process.env.NEXT_PUBLIC_ADFIT_UNIT_BOTTOM ?? "";
