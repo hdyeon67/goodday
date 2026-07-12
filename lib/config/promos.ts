@@ -20,4 +20,12 @@ export const PROMOS: PromoApp[] = [
     href: "https://chemicheck-lemon.vercel.app",
     color: "#ff5db1",
   },
+  {
+    id: "saju",
+    emoji: "🔮",
+    title: "내 사주가 궁금하다면?",
+    desc: "생년월일로 보는 사주풀이",
+    href: "https://saju-one-gilt.vercel.app",
+    color: "#7c5cff",
+  },
 ];
