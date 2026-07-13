@@ -45,7 +45,7 @@ export function AdFit({
   if (!unit) return null;
 
   return (
-    <div className={`my-6 flex justify-center ${className}`}>
+    <div className={`flex justify-center ${className}`}>
       <div ref={ref} style={{ width, height, maxWidth: "100%" }} />
     </div>
   );

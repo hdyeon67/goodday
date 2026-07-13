@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ADSENSE_CLIENT, ADSENSE_ENABLED } from "@/lib/config/flags";
 import { siteUrl } from "@/lib/config/site";
+import { AdRails } from "@/components/AdRails";
 
 const SITE_URL = siteUrl();
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-hanji text-meok antialiased">
+        <AdRails />
         {children}
         {ADSENSE_ENABLED && (
           <Script
