@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     ? [{ name: "Pretendard", data: font, weight: 700 as const, style: "normal" as const }]
     : undefined;
 
-  // 폴백: 페이로드 해석 실패 시 브랜드 카드
+  // 폴백(홈/기본 공유): 한지+절기 톤 브랜드 카드
   if (!payload) {
     return new ImageResponse(
       (
@@ -36,14 +36,49 @@ export async function GET(req: Request) {
             width: "100%",
             height: "100%",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             background: "#f7f3ea",
-            color: "#2b2b2b",
-            fontSize: 72,
+            padding: 48,
+            fontFamily: "Pretendard",
           }}
         >
-          좋은날
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              border: "3px solid #2b2b2b",
+              padding: "56px 64px",
+            }}
+          >
+            <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+              <div style={{ display: "flex", fontSize: 30, color: "#a9762e", letterSpacing: 6 }}>
+                이사 · 행사 택일
+              </div>
+              <div style={{ display: "flex", fontSize: 120, fontWeight: 700, color: "#2b2b2b", marginTop: 14 }}>
+                좋은날
+              </div>
+              <div style={{ display: "flex", fontSize: 36, color: "#6b6358", marginTop: 22 }}>
+                오늘부터 30일, 좋은 날 TOP 3를 골라드려요
+              </div>
+              <div style={{ display: "flex", gap: 12, marginTop: 40 }}>
+                {Array.from({ length: 7 }).map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: 64,
+                      height: 64,
+                      borderRadius: 10,
+                      border: "2px solid #d8cdb2",
+                      background: i === 3 ? "#a9762e" : "#f7f3ea",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       ),
       { width: 1200, height: 630, fonts },

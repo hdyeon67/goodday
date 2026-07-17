@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "좋은날",
-    images: ["/logo.png"],
+    images: ["/api/og"],
   },
 };
 
