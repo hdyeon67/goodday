@@ -16,6 +16,15 @@ export interface PromoApp {
 
 export const PROMOS: PromoApp[] = [
   {
+    // 날 잡았으면 봉투 차례 — 경조사 실용 흐름으로 연결 (크로스프로모 스펙 v2: 좋은날 → 축의금, 출시 후)
+    id: "bongtu",
+    emoji: "💌",
+    title: "날 잡았으면, 봉투 차례?",
+    desc: "관계·상황별 축의금 3초 계산",
+    href: "https://bongtu.fineboll.com",
+    color: "#e0a458",
+  },
+  {
     id: "chemicheck",
     emoji: "💞",
     title: "궁합도 궁금하다면?",
