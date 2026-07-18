@@ -31,12 +31,4 @@ export const PROMOS: PromoApp[] = [
     href: "https://saju.fineboll.com",
     color: "#7c5cff",
   },
-  {
-    id: "shinjo",
-    emoji: "🗣️",
-    title: "내 언어 나이는?",
-    desc: "신조어로 재보는 언어 나이 테스트",
-    href: "https://shinjo.fineboll.com",
-    color: "#a24bff",
-  },
 ];
