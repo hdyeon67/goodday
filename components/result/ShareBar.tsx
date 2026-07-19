@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { shareKakao } from "@/lib/share";
+import { track } from "@/lib/analytics";
 
 /** 공유 바 — 카카오톡 / 링크 복사 / 결과 카드 PNG 저장 */
 export function ShareBar({
@@ -21,6 +22,7 @@ export function ShareBar({
   const [busy, setBusy] = useState(false);
 
   async function copyLink() {
+    track("share_click", { channel: "link" });
     try {
       await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
@@ -32,6 +34,7 @@ export function ShareBar({
 
   // 서버에서 렌더한 카드 PNG를 내려받는다 (html-to-image 는 기기별로 깨져 미사용).
   async function saveImage() {
+    track("share_click", { channel: "png" });
     setBusy(true);
     try {
       const res = await fetch(cardImageUrl);
@@ -54,6 +57,7 @@ export function ShareBar({
   }
 
   async function kakao() {
+    track("share_click", { channel: "kakao" });
     const ok = await shareKakao({
       title,
       description,

@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PURPOSES, type PurposeId } from "@/lib/engine";
 import { encodePayload } from "@/lib/share";
+import { track, referrerType } from "@/lib/analytics";
 import { WeekWidget } from "./WeekWidget";
 
 const BIRTH_RE = /^\d{4}-\d{2}-\d{2}$/;
@@ -20,9 +21,15 @@ export function LandingApp() {
     [purpose, name, birth],
   );
 
+  useEffect(() => {
+    track("landing_view", { referrer_type: referrerType() });
+  }, []);
+
   function submit() {
     if (!valid || !purpose) return;
     setSubmitting(true);
+    // 목적(category)만 전송 — 이름·생년월일 등 입력값은 절대 전송하지 않음
+    track("input_submit", { category: purpose });
     const d = encodePayload({ n: name.trim(), b: birth, p: purpose });
     router.push(`/result?d=${d}`);
   }

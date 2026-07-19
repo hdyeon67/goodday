@@ -16,3 +16,11 @@ export const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
 export const ADFIT_UNIT_PC_LEFT = process.env.NEXT_PUBLIC_ADFIT_UNIT_PC_LEFT ?? "";
 export const ADFIT_UNIT_PC_RIGHT = process.env.NEXT_PUBLIC_ADFIT_UNIT_PC_RIGHT ?? "";
 export const ADFIT_UNIT_MOBILE = process.env.NEXT_PUBLIC_ADFIT_UNIT_MOBILE ?? "";
+
+// ── Analytics (analytics-spec.md) ────────────────────────
+/** PostHog 프로젝트 키(퍼블리시 가능). 없으면 계측 비활성 */
+export const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "";
+/** PostHog 호스트 (US 클라우드 기본) */
+export const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
+/** Cloudflare Web Analytics 토큰(보조). 없으면 비활성 */
+export const CF_BEACON_TOKEN = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ?? "";

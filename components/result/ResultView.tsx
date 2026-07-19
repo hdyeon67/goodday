@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { PURPOSES, type PurposeId } from "@/lib/engine";
 import { encodePayload } from "@/lib/share";
+import { track } from "@/lib/analytics";
 import { OHAENG_HINT } from "@/lib/copy";
 import type { ResultVM } from "@/lib/result/build";
 import { AdFit } from "@/components/AdFit";
@@ -29,6 +31,11 @@ export function ResultView({
 }) {
   const router = useRouter();
   const { purpose } = data;
+
+  useEffect(() => {
+    // 목적(category)·최고 점수 구간만 전송 — 개인 입력값 미전송
+    track("result_view", { category: purpose.id, score_band: data.top3[0]?.bandLabel });
+  }, [purpose.id, data.top3]);
 
   function repick(p: PurposeId) {
     if (p === purpose.id) return;

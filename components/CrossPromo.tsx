@@ -1,4 +1,7 @@
+"use client";
+
 import { PROMOS } from "@/lib/config/promos";
+import { track } from "@/lib/analytics";
 
 /** 결과 페이지 하단 크로스 프로모션 배너 (config 배열 기반) */
 export function CrossPromo() {
@@ -11,6 +14,7 @@ export function CrossPromo() {
           href={p.href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => track("cross_banner_click", { target_app: p.id })}
           className="flex items-center gap-3 rounded-2xl border border-hanji-deep bg-white/60 px-4 py-3 transition hover:bg-white"
         >
           <span
